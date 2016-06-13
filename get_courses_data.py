@@ -11,7 +11,7 @@ includes = 'partnerIds,specializations,instructorIds'
 # url = "https://api.coursera.org/api/courses.v1?ids=Z3yHdBVBEeWvmQrN_lODCw,v1-3,Gtv4Xb1-EeS-ViIACwYKVQ&fields=language,shortDescription,previewLink,specializations,s12nIds"
 curl_instance = pycurl.Curl()
 curl_instance.setopt(curl_instance.VERBOSE,True)
-
+'''Change the start and total variables. Reads all the required data to all_data_courses.txt'''
 #Opening a file to read:
 f2 = open('all_data_courses.txt','ab')
 while True:
@@ -25,7 +25,7 @@ while True:
 	f = open('jsons.txt','r')
 	body = f.read()
 	print body
-	raw_input('body dekho')
+	# raw_input('body dekho')
 	body_json = ujson.loads(body)
 	pprint(body_json)
 	f.close()
@@ -35,7 +35,7 @@ while True:
 	for course in body_json['elements']:
 		ids.append(course['id'])
 	print ids,'start=',start
-	raw_input('ids dekho')
+	# raw_input('ids dekho')
 	ids1 = ids[:20]
 	ids2 = ids[20:40]
 	ids3 = ids[40:60]
@@ -51,13 +51,13 @@ while True:
 	for an_id in id_strings:
 		url = basic_url + '?' + 'ids=' + an_id + '&' + 'includes=' + includes + '&' + 'fields=' + fields + ',' + includes
 		print url
-		raw_input('url dekho')
+		# raw_input('url dekho')
 		curl_instance.setopt(curl_instance.URL, url)
 		curl_instance.setopt(curl_instance.WRITEDATA,f2)
 		curl_instance.perform()
 	if int(start) > int(total):
 		print 'start and total',start, total
-		raw_input('start and total')
+		# raw_input('start and total')
 		break
 f.close()
 curl_instance.close()

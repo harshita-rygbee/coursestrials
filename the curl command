@@ -1,1 +1,4 @@
 curl "https://api.coursera.org/api/instructors.v1/5377163?includes=instructorIds,partnerIds&fields=instructorIds,department,partnerIds"
+
+Equivalent:
+curl "https://api.coursera.org/api/instructors.v1?ids=5377163&includes=instructorIds,partnerIds&fields=instructorIds,department,partnerIds"
